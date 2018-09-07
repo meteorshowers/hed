@@ -42,7 +42,7 @@ If you have multiple GPUs on your machine, you can also run the multi-GPU versio
 
 After training, to evaluate:
 
-        python evaluate.py --num_votes 12 
+        python evaluate.py
 
 <i>Side Note:</i>  Hello mingyang, I love you
 
