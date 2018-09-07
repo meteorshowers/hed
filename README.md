@@ -14,9 +14,27 @@ If you find our work useful in your research, please consider citing:
         }
 
 ### Introduction
-I reimpletation the edge detection model according to the <a href="https://github.com/s9xie/hed">HED</a>  model in pytorch. 
+I implement the edge detection model according to the <a href="https://github.com/s9xie/hed">HED</a>  model in pytorch. 
 
-I will release the result of my pytorch model in the future.
+the result of my pytorch model will be released in the future
+
+The results on BSDS500 dataset
+------------------------------
+model |results| ODS F-score
+------------------------------
+HED/caffe     |   0.790
+------------------------------
+HED/pytorch   |
+------------------------------
+***********************************
+The results on NYU Depth dataset
+------------------------------
+model |results| ODS F-score
+------------------------------
+HED/caffe     |    0.746
+------------------------------
+HED/pytorch   |
+------------------------------
 
 the following is the original introduction of HED paper:
 
@@ -34,7 +52,7 @@ To train a HED model on BSDS500:
 
         python train_hed.py
 
-If you have multiple GPUs on your machine, you can also run the multi-GPU version training (our implementation is similar to the tensorflow <a href="https://github.com/tensorflow/models/tree/master/tutorials/image/cifar10">cifar10 tutorial</a>):
+If you have multiple GPUs on your machine, you can also run the multi-GPU version training:
 
         CUDA_VISIBLE_DEVICES=0,1 python train_multi_gpu.py --num_gpus 2
 
