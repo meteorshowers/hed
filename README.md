@@ -70,4 +70,4 @@ Our code is released under MIT License (see LICENSE file for details).
 
 ### Related Projects
 
-<a href="https://github.com/s9xie/hed"></a> 
+<a href="https://github.com/s9xie/hed">HED</a> 
