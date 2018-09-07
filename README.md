@@ -1,22 +1,16 @@
-# hed-pytorch
-#This code is created by XuanyiLi, if you have any problem in using it, please contact:xuanyili.edu@gmail.com.
-There is the reference paper:
-
-
-
-### PointNet++: *Deep Hierarchical Feature Learning on Point Sets in a Metric Space*
-Created by <a href="http://charlesrqi.com" target="_blank">Charles R. Qi</a>, <a href="http://stanford.edu/~ericyi">Li (Eric) Yi</a>, <a href="http://ai.stanford.edu/~haosu/" target="_blank">Hao Su</a>, <a href="http://geometry.stanford.edu/member/guibas/" target="_blank">Leonidas J. Guibas</a> from Stanford University.
+### HED-pytorch: Holistically-Nested Edge Detection
+created by XuanyiLi, if you have any problem in using it, please contact:xuanyili.edu@gmail.com.
 
 ![prediction example](https://github.com/charlesq34/pointnet2/blob/master/doc/teaser.jpg)
 
 ### Citation
 If you find our work useful in your research, please consider citing:
 
-        @article{qi2017pointnetplusplus,
-          title={PointNet++: Deep Hierarchical Feature Learning on Point Sets in a Metric Space},
-          author={Qi, Charles R and Yi, Li and Su, Hao and Guibas, Leonidas J},
-          journal={arXiv preprint arXiv:1706.02413},
-          year={2017}
+        @InProceedings{xie15hed,
+    author = {"Xie, Saining and Tu, Zhuowen"},
+    Title = {Holistically-Nested Edge Detection},
+    Booktitle = "Proceedings of IEEE International Conference on Computer Vision",
+    Year  = {2015},
         }
 
 ### Introduction
@@ -30,21 +24,10 @@ In this repository we release code and data for our PointNet++ classification an
 
 Install <a href="https://www.tensorflow.org/install/">TensorFlow</a>. The code is tested under TF1.2 GPU version and Python 2.7 (version 3 should also work) on Ubuntu 14.04. There are also some dependencies for a few Python libraries for data processing and visualizations like `cv2`, `h5py` etc. It's highly recommended that you have access to GPUs.
 
-#### Compile Customized TF Operators
-The TF operators are included under `tf_ops`, you need to compile them (check `tf_xxx_compile.sh` under each ops subfolder) first. Update `nvcc` and `python` path if necessary. The code is tested under TF1.2.0. If you are using earlier version it's possible that you need to remove the `-D_GLIBCXX_USE_CXX11_ABI=0` flag in g++ command in order to compile correctly.
-
-To compile the operators in TF version >=1.4, you need to modify the compile scripts slightly.
-
-First, find Tensorflow include and library paths.
-
-        TF_INC=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_include())')
-        TF_LIB=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_lib())')
-        
-Then, add flags of `-I$TF_INC/external/nsync/public -L$TF_LIB -ltensorflow_framework` to the `g++` commands.
 
 ### Usage
 
-#### Shape Classification
+#### image edge detection
 
 To train a PointNet++ model to classify ModelNet40 shapes (using point clouds with XYZ coordinates):
 
@@ -66,7 +49,7 @@ After training, to evaluate the classification accuracies (with optional multi-a
 
 To use normal features for classification: You can get our sampled point clouds of ModelNet40 (XYZ and normal from mesh, 10k points per shape) at this <a href="https://1drv.ms/u/s!ApbTjxa06z9CgQfKl99yUDHL_wHs">OneDrive link</a>. Move the uncompressed data folder to `data/modelnet40_normal_resampled`
 
-#### Object Part Segmentation
+#### video edge detection
 
 To train a model to segment object parts for ShapeNet models:
 
@@ -75,25 +58,16 @@ To train a model to segment object parts for ShapeNet models:
 
 Preprocessed ShapeNetPart dataset (XYZ, normal and part labels) can be found <a href="https://1drv.ms/u/s!ApbTjxa06z9CgQnl-Qm6KI3Ywbe1">here</a>. Move the uncompressed data folder to `data/shapenetcore_partanno_segmentation_benchmark_v0_normal`
 
-#### Semantic Scene Parsing
-
-See `scannet/README` and `scannet/train.py` for details.
-
-#### Visualization Tools
-We have provided a handy point cloud visualization tool under `utils`. Run `sh compile_render_balls_so.sh` to compile it and then you can try the demo with `python show3d_balls.py` The original code is from <a href="http://github.com/fanhqme/PointSetGeneration">here</a>.
-
-#### Prepare Your Own Data
-You can refer to <a href="https://github.com/charlesq34/3dmodel_feature/blob/master/io/write_hdf5.py">here</a> on how to prepare your own HDF5 files for either classification or segmentation. Or you can refer to `modelnet_dataset.py` on how to read raw data files and prepare mini-batches from them. A more advanced way is to use TensorFlow's dataset APIs, for which you can find more documentations <a href="https://www.tensorflow.org/programmers_guide/datasets">here</a>.
 
 ### License
 Our code is released under MIT License (see LICENSE file for details).
 
 ### Updates
-* 02/23/2018: Added support for multi-gpu training for the classification task.
-* 02/23/2018: Adopted a new way for data loading. No longer require manual data downloading to train a classification network.
-* 02/06/2018: Added sample training code for ScanNet semantic segmentation.
+
+### To do 
+* Add support for multi-gpu training for the classification task.
+* Add support for video edge detection task.
 
 ### Related Projects
 
-* <a href="http://stanford.edu/~rqi/pointnet" target="_blank">PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation</a> by Qi et al. (CVPR 2017 Oral Presentation). Code and data released in <a href="https://github.com/charlesq34/pointnet">GitHub</a>.
-* <a href="https://arxiv.org/abs/1711.08488" target="_blank">Frustum PointNets for 3D Object Detection from RGB-D Data</a> by Qi et al. (CVPR 2018) A novel framework for 3D object detection with RGB-D data. Based on 2D boxes from a 2D object detector on RGB images, we extrude the depth maps in 2D boxes to point clouds in 3D space and then realize instance segmentation and 3D bounding box estimation using PointNet/PointNet++. The method proposed has achieved first place on KITTI 3D object detection benchmark on all categories (last checked on 11/30/2017). Code and data release TBD.
+<a href="https://github.com/s9xie/hed"></a> 
