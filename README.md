@@ -18,23 +18,12 @@ I implement the edge detection model according to the <a href="https://github.co
 
 the result of my pytorch model will be released in the future
 
-The results on BSDS500 dataset
-------------------------------
-model |results| ODS F-score
-------------------------------
-HED/caffe     |   0.790
-------------------------------
-HED/pytorch   |
-------------------------------
-***********************************
-The results on NYU Depth dataset
-------------------------------
-model |results| ODS F-score
-------------------------------
-HED/caffe     |    0.746
-------------------------------
-HED/pytorch   |
-------------------------------
+| Method |ODS F-score on BSDS500 dataset |ODS F-score on NYU Depth dataset|
+|:---|:---:|:---:|
+| Ours| *** | ***  |
+| Reference[1]| 0.790    |   0.746  |
+
+
 
 the following is the original introduction of HED paper:
 
