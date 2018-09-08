@@ -22,6 +22,9 @@ the result of my pytorch model will be released in the future
 | Method |ODS F-score on BSDS500 dataset |ODS F-score on NYU Depth dataset|
 |:---|:---:|:---:|
 | Ours(SGD-notunelr-nogradenven-le-8)|0.767| ***  |
+|ours(SGD-tunelr-gradenven-1e-6)| *** | *** |
+|ours(ADAM-notunelr-nogradenven-1e-4)| *** | *** |
+|ours(init dsn to zeros)| *** | *** |
 | Reference[1]| 0.790    |   0.746  |
 
 
