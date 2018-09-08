@@ -1,7 +1,7 @@
 ### HED-pytorch: Holistically-Nested Edge Detection
 created by XuanyiLi, if you have any problem in using it, please contact:xuanyili.edu@gmail.com.
 
-![prediction example](https://github.com/charlesq34/pointnet2/blob/master/doc/teaser.jpg)
+![prediction example](https://github.com/meteorshowers/hed-pytorch/blob/master/doc/326025.jpg)
 
 ### Citation
 If you find our work useful in your research, please consider citing:
