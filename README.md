@@ -20,7 +20,7 @@ the result of my pytorch model will be released in the future
 
 | Method |ODS F-score on BSDS500 dataset |ODS F-score on NYU Depth dataset|
 |:---|:---:|:---:|
-| Ours|0.767| ***  |
+| Ours(SGD-nolr-nogradenven-le-8)|0.767| ***  |
 | Reference[1]| 0.790    |   0.746  |
 
 
