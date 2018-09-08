@@ -2,7 +2,10 @@
 created by XuanyiLi, if you have any problem in using it, please contact:xuanyili.edu@gmail.com.
 #### my model result
 the following are the side outputs and the prediction example
-![prediction example](https://github.com/meteorshowers/hed-pytorch/blob/master/doc/326025.jpg)
+SGD no tunelr 1e-8:
+![prediction example](https://github.com/meteorshowers/hed-pytorch/blob/master/doc/326025-sgd-notunelr.jpg)
+Adam no tunelr 1e-4:
+![prediction example](https://github.com/meteorshowers/hed-pytorch/blob/master/doc/326025-adam-notunelr-1e-4.jpg)
 
 ### Citation
 If you find our work useful in your research, please consider citing:
