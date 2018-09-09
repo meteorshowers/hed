@@ -60,7 +60,8 @@ Our code is released under MIT License (see LICENSE file for details).
 
 ### To do 
 * Add support for multi-gpu training for the edge detetion task.
+* Improve the performance to 0.782 in the original paper.
+* Add a gpu version of edge-eval code to accelerate the evaluation process.
 
 ### Related Projects
-
 [1] <a href="https://github.com/s9xie/hed">HED</a> 
