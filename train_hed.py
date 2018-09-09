@@ -27,13 +27,13 @@ parser = argparse.ArgumentParser(description='PyTorch Training')
 parser.add_argument('--batch_size', default=1, type=int, metavar='BT',
                     help='batch size')
 # =============== optimizer
-parser.add_argument('--lr', '--learning_rate', default=1e-8, type=float,
+parser.add_argument('--lr', '--learning_rate', default=1e-4, type=float,
                     metavar='LR', help='initial learning rate')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
 parser.add_argument('--weight_decay', '--wd', default=2e-4, type=float,
                     metavar='W', help='default weight decay')
-parser.add_argument('--stepsize', default=3, type=int,
+parser.add_argument('--stepsize', default=3, type=int, 
                     metavar='SS', help='learning rate step size')
 parser.add_argument('--gamma', '--gm', default=0.1, type=float,
                     help='learning rate decay parameter: Gamma')
@@ -78,16 +78,14 @@ def main():
         test_list = f.readlines()
     test_list = [split(i.rstrip())[1] for i in test_list]
     assert len(test_list) == len(test_loader), "%d vs %d" % (len(test_list), len(test_loader))
-    # log
-    log = Logger(join(TMP_DIR, 'log.txt'))
-    sys.stdout = log
+
     # model
     model = HED()
     model.cuda()
     model.apply(weights_init)
     load_vgg16pretrain(model)
     if args.resume:
-        if isfile(args.resume):
+        if isfile(args.resume): 
             print("=> loading checkpoint '{}'".format(args.resume))
             checkpoint = torch.load(args.resume)
             model.load_state_dict(checkpoint['state_dict'])
@@ -95,10 +93,53 @@ def main():
                   .format(args.resume))
         else:
             print("=> no checkpoint found at '{}'".format(args.resume))
+    
+    #tune lr
+    net_param = {}
+    net_param['conv5.weight'] = []
+    net_param['conv5.bias'] = []
+    net_param['conv1-4.weight'] = []
+    net_param['conv1-4.bias'] = []
+    net_param['score_dsn.weight'] = []
+    net_param['score_dsn.bias'] = []
+    net_param['new_score_weighting.weight'] = []
+    net_param['new_score_weighting.bias'] = []
+    for name, p in model.named_parameters():
+        if 'conv5' and 'weight'in name:
+            net_param['conv5.weight'].append(p)
+        elif 'conv5' and 'bias'in name:
+            net_param['conv5.bias'].append(p)
+        elif 'conv' and 'weight' in name:
+            net_param['conv1-4.weight'].append(p)
+        elif 'conv' and 'bias' in name:
+            net_param['conv1-4.bias'].append(p)
+        elif 'score_dsn' and 'weight' in name:
+            net_param['score_dsn.weight'].append(p)
+        elif 'score_dsn' and 'bias' in name:
+            net_param['score_dsn.bias'].append(p)
+        elif 'new' and 'weight' in name:
+            net_param['new_score_weighting.weight'].append(p)
+        elif 'new' and 'bias' in name:
+            net_param['new_score_weighting.bias'].append(p)
+
+    optimizer = torch.optim.Adam([{'params': net_param['conv5.weight'], 'lr':args.lr*100, 'weight_decay': args.weight_decay},
+                                    {'params': net_param['conv5.bias'], 'lr':args.lr*200, 'weight_decay': 0},
+                                    {'params': net_param['conv1-4.weight'], 'lr':args.lr*1, 'weight_decay': args.weight_decay},
+                                    {'params': net_param['conv1-4.bias'], 'lr':args.lr*2, 'weight_decay': 0},
+                                    {'params': net_param['score_dsn.weight'], 'lr':args.lr*0.01, 'weight_decay': args.weight_decay},
+                                    {'params': net_param['score_dsn.bias'], 'lr':args.lr*0.02, 'weight_decay': 0},
+                                    {'params': net_param['new_score_weighting.weight'], 'lr':args.lr*0.001, 'weight_decay': args.weight_decay},
+                                    {'params': net_param['new_score_weighting.bias'], 'lr':args.lr*0.002, 'weight_decay': 0}], lr=args.lr,  weight_decay=args.weight_decay)
+     
     # optimizer
     #optimizer = torch.optim.SGD(model.parameters(), lr = args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-    optimizer = torch.optim.Adam(model.parameters(), lr = args.lr, weight_decay=args.weight_decay)
+    # optimizer = torch.optim.Adam(model.parameters(), lr = args.lr, weight_decay=args.weight_decay)
     scheduler = lr_scheduler.StepLR(optimizer, step_size=args.stepsize, gamma=args.gamma)
+
+    # log
+    log = Logger(join(TMP_DIR, '%s-%d-log.txt' %('Adam',args.lr)))
+    sys.stdout = log
+
     train_loss = []
     train_loss_detail = []
     for epoch in range(args.start_epoch, args.maxepoch):
