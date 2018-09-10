@@ -69,5 +69,6 @@ Our code is released under MIT License (see LICENSE file for details).
 
 ### Related Projects
 [1] <a href="https://github.com/s9xie/hed">HED</a> 
+
 [2] <a href="https://github.com/zeakey/hed">HED</a>
 
