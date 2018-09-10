@@ -1,4 +1,5 @@
 ### HED-pytorch: Holistically-Nested Edge Detection
+Thanks to <a href="https://github.com/zeakey">zeakey's</a> help.
 created by XuanyiLi, if you have any problem in using it, please contact:xuanyili.edu@gmail.com.
 #### my model result
 the following are the side outputs and the prediction example
@@ -67,3 +68,5 @@ Our code is released under MIT License (see LICENSE file for details).
 
 ### Related Projects
 [1] <a href="https://github.com/s9xie/hed">HED</a> 
+[2] <a href="https://github.com/zeakey/hed">HED</a>
+
