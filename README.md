@@ -27,9 +27,9 @@ the result of my pytorch model will be released in the future
 | Ours(SGD-notunelr-nogradenven-le-8)|0.767| ***  |
 |ours(SGD-tunelr-gradenven-1e-6)| *** | *** |
 |ours(ADAM-notunelr-nogradenven-1e-4)| 0.758(epoch1) 0.768(epoch2) <br> 0.767(epoch3) 0.772(epoch4) 0.771(epoch5) <br> 0.771(epoch6) 0.769(epoch10) | *** |
-|ours(ADAM-tunelr-nogradenven-1e-6)|0.766(epoch2)| *** |
-|ours(ADAM-tunelr-nogradeven-1e-6-init dsn to zeros)| *** | *** |
-|ours(ADAM-tunelr-nogradeven-1e-6)itersize20| 0.768(epoch6) | *** |
+|ours(ADAM-tunelr-nogradenven-1e-6)|0.766(epoch2) 0.768(epoch6) 0.768(epoch9)| *** |
+|ours(ADAM-tunelr-nogradeven-1e-6-init dsn to zeros)| 0.768(epoch6) 0.767(epoch9) | *** |
+|ours(ADAM-tunelr-nogradeven-1e-6)itersize20| 0.768(epoch6) 0.768（epoch9） | *** |
 | Reference[1]| 0.782    |   0.746  |
 
 
