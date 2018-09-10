@@ -1,6 +1,6 @@
 ### HED-pytorch: Holistically-Nested Edge Detection
 Thanks to <a href="https://github.com/zeakey">zeakey's</a> help.
-created by XuanyiLi, if you have any problem in using it, please contact:xuanyili.edu@gmail.com.
+Created by XuanyiLi, if you have any problem in using it, please contact:xuanyili.edu@gmail.com.
 The best result of my pytorch model is 0.772 ODS F-score now.
 #### my model result
 the following are the side outputs and the prediction example
