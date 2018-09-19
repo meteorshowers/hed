@@ -35,7 +35,7 @@ class HED(nn.Module):
         self.score_dsn3 = nn.Conv2d(256, 1, 1)
         self.score_dsn4 = nn.Conv2d(512, 1, 1)
         self.score_dsn5 = nn.Conv2d(512, 1, 1)
-        self.new_score_weighting = nn.Conv2d(5, 1, 1)
+        self.score_final = nn.Conv2d(5, 1, 1)
 
     def forward(self, x):
         # VGG
