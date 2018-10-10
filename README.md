@@ -61,6 +61,8 @@ Our code is released under MIT License (see LICENSE file for details).
 * Add support for multi-gpu training for the edge detetion task.
 * Improve the performance to 0.782 in the original paper.
 * Add a gpu version of edge-eval code to accelerate the evaluation process.
+### Note
+* the flip-conv operater code is in the hed code, which can reduce the parameters to half, however will redue the ODS-F score from 0.769 to 0.756
 
 ### Related Projects
 [1] <a href="https://github.com/s9xie/hed">HED</a> 
